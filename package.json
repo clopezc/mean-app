@@ -1,0 +1,23 @@
+{
+  "name": "mean-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.4",
+    "ejs": "^2.5.9",
+    "expres": "^4.16.3",
+    "mongodb": "^3.0.7",
+    "mongojs": "^2.5.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  }
+}
