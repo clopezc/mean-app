@@ -10,7 +10,7 @@ db.tasks.find((err,tasks) => {
 });
 
 router.get('/tasks/:id',(req,res,next) => {
-    db.tasks.findOne({_id: req.params.id},(err,tasks) => {
+    db.tasks.findOne({_id: mongojs.ObjectId(req.params.id)},(err,task) => {
         if(err) return next(err);
         res.json(task);     
         });
@@ -29,6 +29,14 @@ router.post('/tasks', (req, res, next) => {
             res.json(task);
         });
     }
+});
+
+// Delete a Task
+router.delete('/tasks/:id', (req, res, next) => {
+    db.tasks.remove({_id: mongojs.ObjectId(req.params.id)}, (err,task) => {
+        if(err) return next(err);
+        res.json(task);
+    });    
 });
 
 module.exports = router;
