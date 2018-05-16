@@ -47,7 +47,19 @@ export class TasksComponent implements OnInit {
     });
       }
     })
+  }
 
+  updateStatus(task: Task) {
+    var newTask = {            
+      _id: task._id,
+      title: task.title,
+      isDone: !task.isDone
+    };
+    console.log(newTask);
+    this.taskService.updateTask(newTask)
+      .subscribe(res => {
+        task.isDone = !task.isDone;
+      })
   }
 
   ngOnInit() {

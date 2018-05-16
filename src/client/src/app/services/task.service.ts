@@ -23,6 +23,8 @@ domain: string = 'http://localhost:3000';
     return this.http.delete<Task>(`${this.domain}/tasks/${id}`)
   }
 
-  updateTask(){}
+  updateTask(newTask) {
+    return this.http.put<Task>(`${this.domain}/tasks/${newTask._id}`, newTask)
+  }
 
 }

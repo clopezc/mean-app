@@ -39,4 +39,34 @@ router.delete('/tasks/:id', (req, res, next) => {
     });    
 });
 
+// Update a Task
+router.put('/tasks/:id', (req, res, next) => {
+    const task = req.body;
+    console.log("task {}",task);
+    const updateTask = {};
+    if(task.isDone){
+        updateTask.isDone = task.isDone;
+    }
+
+    if(task.title){
+        updateTask.title = task.title;
+    }
+
+    console.log("updateTasks {}",updateTask);
+
+
+    if(!updateTask){
+        res.status(400).json({
+            error: 'Bad Request'
+        });
+    }else{
+        console.log("routerUpdate");
+        db.tasks.update({_id: mongojs.ObjectId(req.params.id)}, updateTask, {},  (err,task) => {
+            if(err) return next(err);
+            res.json(task);
+        });    
+    }
+  
+});
+
 module.exports = router;
